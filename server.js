@@ -86,6 +86,7 @@ var htmlTemplate=`
         <h3>
             ${heading}
         </h3>
+        ${date}
         <div>
             ${title}
         </div>
