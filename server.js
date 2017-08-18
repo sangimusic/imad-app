@@ -83,10 +83,10 @@ var htmlTemplate=`
             <a href="/">home</a>
         </div>
         <hr/>
+        ${date}
         <h3>
             ${heading}
         </h3>
-        ${date}
         <div>
             ${title}
         </div>
@@ -113,6 +113,13 @@ app.get('/:articleName', function (req, res) {
  res.send(createTemplate(articles[articleName]));
 });
 
+app.get('/article-two', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
+});
+
+app.get('/article-three', function (req, res) {
+ res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
