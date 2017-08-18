@@ -5,7 +5,8 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
+var articles={
+'article-one':{
     title:' article one',
     heading:'Article one ',
     date:' sep 13,2017',
@@ -22,7 +23,45 @@ var articleOne={
             <p>
                 this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
             </p>`
+},
+'article-two':{
+    
+    title:' article two',
+    heading:'Article two ',
+    date:' sep 13,2017',
+    content: `         
+             <p>
+                this is my two web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my two web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my two web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my two web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>`
+},
+'article-three':{
+    title:' article three',
+    heading:'Article three ',
+    date:' sep 13,2017',
+    content: `         
+            <p>
+                this is my three web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my three web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my three web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p>
+            <p>
+                this is my three web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.this is my web app.
+            </p> `
 }
+};
 function createTemplate(data)
 {
     var title=data.title;
@@ -68,17 +107,11 @@ return htmlTemplate;
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/article-one', function (req, res) {
- res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    var articleName=req.params.articleName;
+ res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/article-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function (req, res) {
- res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
